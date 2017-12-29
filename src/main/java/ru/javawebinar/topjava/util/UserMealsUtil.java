@@ -44,7 +44,7 @@ public class UserMealsUtil {
                                 UserMeal::getCalories,
                                 Integer::sum
                         )));
-//      collect by days and creates new UserMealWithExceed
+//      collect by times and creates new UserMealWithExceed checking exceeded from map caloriesByDate
         return mealList.stream()
                 .filter(userMeal -> userMeal.getDateTime().toLocalTime().isAfter(startTime)
                         && userMeal.getDateTime().toLocalTime().isBefore(endTime))
