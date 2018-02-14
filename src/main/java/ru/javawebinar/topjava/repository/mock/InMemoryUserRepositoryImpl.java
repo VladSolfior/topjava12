@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import ru.javawebinar.topjava.model.AbstractNamedEntity;
 import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.repository.UserRepository;
-import ru.javawebinar.topjava.util.exception.NotFoundException;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -41,7 +40,7 @@ public class InMemoryUserRepositoryImpl implements UserRepository {
     @Override
     public User get(int id) {
         log.info("get {}", id);
-        return Optional.ofNullable(userRepo.get(id)).orElseThrow(() -> new NotFoundException("not found User with id: " + id));
+        return Optional.ofNullable(userRepo.get(id)).orElse(null);
     }
 
     @Override
@@ -58,6 +57,6 @@ public class InMemoryUserRepositoryImpl implements UserRepository {
         return userRepo.values()
                 .stream()
                 .filter(user -> user.getEmail().equals(email))
-                .findFirst().orElseThrow(() -> new NotFoundException("not found User with email: " + email));
+                .findFirst().orElse(null);
     }
 }
