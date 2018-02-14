@@ -43,7 +43,11 @@ public class MealRestController {
         return mealService.save(meal, AuthorizedUser.id());
     }
 
-    public List<MealWithExceed> getAll(HttpServletRequest request) {
+    public List<MealWithExceed> getAll() {
+        return MealsUtil.getWithExceeded(mealService.getAll(AuthorizedUser.id()), AuthorizedUser.getCaloriesPerDay());
+    }
+
+    public List<MealWithExceed> getFiltered(HttpServletRequest request) {
         LocalDate startDate = parseLocalDate(request.getParameter("startDate"), request);
         LocalDate endDate = parseLocalDate(request.getParameter("endDate"), request);
         LocalTime startTime = parseLocalTime(request.getParameter("startTime"), request);

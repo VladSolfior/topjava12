@@ -64,7 +64,7 @@ public class MealServlet extends AbstractServlet {
             default:
                 log.info("getAll");
                 request.setAttribute("meals",
-                        mealRestController.getAll(request));
+                        mealRestController.getAll());
                 request.getRequestDispatcher("/meals.jsp").forward(request, response);
                 break;
         }
