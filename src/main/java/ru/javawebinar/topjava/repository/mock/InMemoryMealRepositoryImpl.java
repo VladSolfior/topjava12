@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class InMemoryMealRepositoryImpl implements MealRepository {
     private Map<Integer, Map<Integer, Meal>> repository = new ConcurrentHashMap<>();
     private AtomicInteger counter = new AtomicInteger(0);
-    private Comparator<Meal> MEAL_COMPARATOR = Comparator.comparing(Meal::getDateTime);
+    private Comparator<Meal> MEAL_COMPARATOR = Comparator.comparing(Meal::getDateTime).reversed();
 
     {
         MealsUtil.MEALS.forEach(meal -> save(meal, AuthorizedUser.id()));
